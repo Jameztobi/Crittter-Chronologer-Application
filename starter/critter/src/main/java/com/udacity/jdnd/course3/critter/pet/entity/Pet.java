@@ -1,6 +1,5 @@
 package com.udacity.jdnd.course3.critter.pet.entity;
 
-import com.udacity.jdnd.course3.critter.pet.entity.children.PetType;
 import com.udacity.jdnd.course3.critter.schedule.entity.Schedule;
 import com.udacity.jdnd.course3.critter.user.customer.entity.Customer;
 
@@ -63,7 +62,7 @@ public class Pet {
     )
     private String name;
 
-
+    private long ownerId;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
@@ -115,6 +114,7 @@ public class Pet {
 
     public void setCustomer(Customer customer) {
         this.customer=customer;
+        customer.setPets(this);
     }
 
     public LocalDate getBirthDate() {
@@ -151,6 +151,14 @@ public class Pet {
 
     public List<Schedule> getSchedule_pet() {
         return schedule_pet;
+    }
+
+    public long getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(long ownerId) {
+        this.ownerId = ownerId;
     }
 
     public void addSchedulePet(Schedule schedulePet) {

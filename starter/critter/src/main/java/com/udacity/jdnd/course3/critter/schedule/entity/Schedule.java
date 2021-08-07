@@ -4,6 +4,10 @@ import com.udacity.jdnd.course3.critter.pet.entity.Pet;
 import com.udacity.jdnd.course3.critter.user.customer.entity.Customer;
 import com.udacity.jdnd.course3.critter.user.employee.entity.Employee;
 import com.udacity.jdnd.course3.critter.user.employee.entity.EmployeeSkill;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -12,6 +16,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity(name="Schedule")
 @Table(name="schedule")
 public class Schedule {
@@ -66,91 +74,5 @@ public class Schedule {
 
     private List<Customer> customers = new ArrayList<>();
 
-    public Schedule(long id, List<Pet> petSchedule, LocalDate date, Set<EmployeeSkill> activities, List<Employee> employeesSchedule, List<Customer> customers) {
-        this.id = id;
-        this.petSchedule = petSchedule;
-        this.date = date;
-        this.activities = activities;
-        this.employeeIds = employeesSchedule;
-        this.customers = customers;
-    }
 
-    public Schedule(List<Pet> pets, LocalDate date, Set<EmployeeSkill> activities) {
-        this.petSchedule = pets;
-        this.date = date;
-        this.activities = activities;
-    }
-
-    public Schedule(LocalDate date, Set<EmployeeSkill> activities) {
-        this.date = date;
-        this.activities = activities;
-    }
-
-    public Schedule(List<Pet> petSchedule, LocalDate date, Set<EmployeeSkill> activities, List<Employee> employeeIds) {
-        this.petSchedule = petSchedule;
-        this.date = date;
-        this.activities = activities;
-        this.employeeIds = employeeIds;
-    }
-
-    public Schedule() {
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public List<Pet> getPetSchedule() {
-        return petSchedule;
-    }
-
-    public void setPetSchedule(List<Pet> petSchedule) {
-        this.petSchedule = petSchedule;
-    }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public Set<EmployeeSkill> getActivities() {
-        return activities;
-    }
-
-
-
-    public void setActivities(Set<EmployeeSkill> activities) {
-        this.activities = activities;
-    }
-
-
-    public List<Employee> getEmployeeIds() {
-        return employeeIds;
-    }
-
-    public void setEmployeeIds(List<Employee> employeeIds) {
-        this.employeeIds = employeeIds;
-    }
-
-    public void addCustomer(Customer customer){
-        if(!customers.contains(customer)){
-            customers.add(customer);
-        }
-    }
-
-    @Override
-    public String toString() {
-        return "Schedule{" +
-                "id=" + id +
-                ", pets=" + petSchedule +
-                ", date=" + date +
-                '}';
-    }
 }

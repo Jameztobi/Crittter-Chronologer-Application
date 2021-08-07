@@ -2,17 +2,25 @@ package com.udacity.jdnd.course3.critter.user.customer.entity;
 
 import com.udacity.jdnd.course3.critter.pet.entity.Pet;
 import com.udacity.jdnd.course3.critter.schedule.entity.Schedule;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity(name="Customer")
 @Table(name="customer")
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     @Column(
             name="customer_name",
             nullable = false
@@ -36,7 +44,7 @@ public class Customer {
             cascade = CascadeType.ALL
     )
 
-    private List<Pet> petIds = new ArrayList<>();
+    private List<Pet> pets;
 
    @ManyToOne
    @JoinColumn(
@@ -48,89 +56,14 @@ public class Customer {
    )
    private Schedule schedule;
 
-    public Customer(String name, String phoneNumber, String notes, List<Pet> pets) {
-        this.name = name;
-        this.phoneNumber = phoneNumber;
-        this.notes = notes;
-        this.petIds = pets;
-    }
+    public void setPets(Pet pet){
+       if(pets==null){
+           pets=new ArrayList<>();
+           pets.add(pet);
+       }
+       pets.add(pet);
 
-    public Customer(String name, String phoneNumber, String notes) {
-        this.name = name;
-        this.phoneNumber = phoneNumber;
-        this.notes = notes;
-    }
-
-    public Customer(String name, String phoneNumber) {
-        this.name = name;
-        this.phoneNumber = phoneNumber;
-    }
+   }
 
 
-
-
-
-    public Customer() {
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
-
-    public List<Pet> getPetIds() {
-        return petIds;
-    }
-
-
-    public void addPet(Pet pet){
-        if(!petIds.contains(pet)){
-            petIds.add(pet);
-        }
-    }
-
-    public void removePet(Pet pet){
-        if(petIds.contains(pet)){
-            petIds.remove(pet.getId());
-            pet.setCustomer(null);
-        }
-    }
-
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", notes='" + notes + '\'' +
-                ", schedule=" + schedule +
-                '}';
-    }
 }

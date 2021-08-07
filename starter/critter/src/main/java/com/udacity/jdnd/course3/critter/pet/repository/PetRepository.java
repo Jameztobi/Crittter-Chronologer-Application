@@ -9,7 +9,6 @@ import java.util.Optional;
 
 @Repository
 public interface PetRepository extends JpaRepository<Pet, Long> {
-    @Query("SELECT p FROM Pet p WHERE p.id = ?1")
     Pet findPetById(Long id);
     @Query("SELECT p FROM Pet p")
     List<Pet> findAllPets();

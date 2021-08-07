@@ -5,6 +5,8 @@ import com.udacity.jdnd.course3.critter.pet.entity.Pet;
 import com.udacity.jdnd.course3.critter.schedule.DTO.ScheduleDTO;
 import com.udacity.jdnd.course3.critter.schedule.entity.Schedule;
 import com.udacity.jdnd.course3.critter.schedule.service.ScheduleService;
+import com.udacity.jdnd.course3.critter.user.employee.entity.Employee;
+import com.udacity.jdnd.course3.critter.user.employee.service.EmployeeService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,30 +27,32 @@ public class ScheduleController {
 
     @PostMapping
     public ScheduleDTO createSchedule(@RequestBody ScheduleDTO scheduleDTO) {
-        Schedule schedule=convertScheduleDTOToSchedule(scheduleDTO);
 
-        return convertScheduleToScheduleDTO(scheduleService.createSchedule(schedule));
+
+        return null;
     }
 
     @GetMapping
     public List<ScheduleDTO> getAllSchedules() {
 
-        return convertScheduleToScheduleDTO(scheduleService.getAllSchedules());
+        return null;
     }
 
     @GetMapping("/pet/{petId}")
     public List<ScheduleDTO> getScheduleForPet(@PathVariable long petId) {
-        return convertScheduleToScheduleDTO(scheduleService.getPetScheduleById(petId));
+
+        return null;
     }
 
     @GetMapping("/employee/{employeeId}")
     public List<ScheduleDTO> getScheduleForEmployee(@PathVariable long employeeId) {
-        return convertScheduleToScheduleDTO(scheduleService.getEmployeeScheduleById(employeeId));
+
+        return null;
     }
 
     @GetMapping("/customer/{customerId}")
     public List<ScheduleDTO> getScheduleForCustomer(@PathVariable long customerId) {
-        return convertScheduleToScheduleDTO(scheduleService.getCustomerScheduleById(customerId));
+        return null;
     }
 
     private ScheduleDTO convertScheduleToScheduleDTO(Schedule schedule){

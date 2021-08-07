@@ -25,13 +25,13 @@ public class CustomerService {
     }
 
     public List<Customer> getCustomers(){
-        return customerRepository.findAll();
+        return customerRepository.findAllCustomer();
     }
 
-    public Customer getCustomerByPet(Long id){
-        return customerRepository.findBypetIds(id);
-
-
-    }
+//    public Customer getCustomerByPet(Long id){
+//        return customerRepository.findBypetIds(id);
+//
+//
+//    }
 
 }

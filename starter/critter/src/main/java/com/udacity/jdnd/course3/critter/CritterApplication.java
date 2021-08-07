@@ -1,26 +1,13 @@
 package com.udacity.jdnd.course3.critter;
 
-import com.github.javafaker.Faker;
-import com.udacity.jdnd.course3.critter.pet.entity.Pet;
-import com.udacity.jdnd.course3.critter.pet.entity.children.PetType;
 import com.udacity.jdnd.course3.critter.pet.repository.PetRepository;
-import com.udacity.jdnd.course3.critter.schedule.entity.Schedule;
 import com.udacity.jdnd.course3.critter.schedule.repository.ScheduleRepository;
-import com.udacity.jdnd.course3.critter.user.customer.entity.Customer;
 import com.udacity.jdnd.course3.critter.user.customer.repository.CustomerRepository;
-import com.udacity.jdnd.course3.critter.user.employee.DTO.EmployeeResponseDTO;
-import com.udacity.jdnd.course3.critter.user.employee.entity.Employee;
-import com.udacity.jdnd.course3.critter.user.employee.entity.EmployeeSkill;
 import com.udacity.jdnd.course3.critter.user.employee.repository.EmployeeRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-
-import javax.transaction.Transactional;
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.util.*;
 
 /**
  * Launches the Spring application. Unmodified from starter code.

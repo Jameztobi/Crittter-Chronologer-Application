@@ -42,10 +42,7 @@ public class UserController {
     @PostMapping("/customer")
     public CustomerDTO saveCustomer(@RequestBody CustomerDTO customerDTO){
        Customer customer = convertCustomerDTOToCustomer(customerDTO);
-
-       CustomerDTO customerDTO1 = convertCustomerToCustomerDTO(customerService.saveCustomer(customer));
-       customerDTO1.setId(customer.getId());
-       return customerDTO1;
+       return convertCustomerToCustomerDTO(customerService.saveCustomer(customer));
     }
 
     @GetMapping("/customer")
@@ -61,7 +58,9 @@ public class UserController {
 
     @GetMapping("/customer/pet/{petId}")
     public CustomerDTO getOwnerByPet(@PathVariable long petId){
-        return convertCustomerToCustomerDTO(customerService.getCustomerByPet(petId));
+        Pet pet = petService.getPetById(petId);
+        Customer owner = pet.getCustomer();
+        return convertCustomerToCustomerDTO(owner);
     }
 
     @PostMapping("/employee")

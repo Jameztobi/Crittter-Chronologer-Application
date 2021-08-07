@@ -7,11 +7,15 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Repository
 @Transactional
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
 
-    Customer findBypetIds(Long id);
+    //Customer findBypetI(Long id);
+
+    @Query(value = "select * from customer", nativeQuery = true)
+    List<Customer> findAllCustomer();
 }
