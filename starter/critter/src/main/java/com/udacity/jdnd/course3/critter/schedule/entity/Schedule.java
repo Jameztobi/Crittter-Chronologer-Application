@@ -44,6 +44,7 @@ public class Schedule {
             mappedBy = "schedule_pet"
     )
     private List<Pet> petSchedule = new ArrayList<>();
+
     @Column(
             name="date",
             nullable = false
@@ -64,7 +65,7 @@ public class Schedule {
     @ManyToMany(
             mappedBy = "schedule_employees"
     )
-    private List<Employee> employeeIds = new ArrayList<>();
+    private List<Employee> employees = new ArrayList<>();
 
     @OneToMany(
             mappedBy = "schedule",

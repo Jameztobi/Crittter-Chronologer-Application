@@ -25,9 +25,9 @@ public class PetService {
 
     public Pet createPet(Pet pet){
         Pet mainPet = petRepository.save(pet);
-//        Customer customer = mainPet.getCustomer();
-//        customer.setPets(mainPet);
-//        customerRepository.save(customer);
+        Customer customer = mainPet.getCustomer();
+        customer.setPets(mainPet);
+        customerRepository.save(customer);
 
         return mainPet;
     }

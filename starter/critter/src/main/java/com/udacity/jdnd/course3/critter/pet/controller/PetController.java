@@ -57,10 +57,17 @@ public class PetController {
 
     @GetMapping("/owner/{ownerId}")
     public List<PetDTO> getPetsByOwner(@PathVariable long ownerId) {
-        List<PetDTO> petDTOS = new ArrayList<>();
 
-        List<Pet> Pets = petService.getPetByownerId(ownerId);
-        for(Pet p : Pets){
+        List<Pet> pets = petService.getAllPet();
+        List<Pet> ownersPet = new ArrayList<>();
+        for(Pet pet: pets){
+            if(pet.getOwnerId()==ownerId){
+                ownersPet.add(pet);
+            }
+        }
+
+        List<PetDTO> petDTOS = new ArrayList<>();
+        for(Pet p : ownersPet){
             petDTOS.add(convertPetToPetDTO(p));
         }
 

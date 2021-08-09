@@ -20,6 +20,9 @@ public class ScheduleService {
     @Autowired
     private ScheduleRepository scheduleRepository;
 
+    public Schedule saveSchedule(Schedule schedule){
+        return scheduleRepository.save(schedule);
+    }
 
     public List<Schedule> getAllSchedules(){
         return scheduleRepository.findAll();

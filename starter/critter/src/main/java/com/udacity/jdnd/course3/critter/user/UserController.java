@@ -59,8 +59,13 @@ public class UserController {
     @GetMapping("/customer/pet/{petId}")
     public CustomerDTO getOwnerByPet(@PathVariable long petId){
         Pet pet = petService.getPetById(petId);
-        Customer owner = pet.getCustomer();
-        return convertCustomerToCustomerDTO(owner);
+        List<Customer> owner = customerService.getCustomers();
+        for(Customer customer: owner){
+            if(customer.getId()==pet.getOwnerId()){
+                return convertCustomerToCustomerDTO(customer);
+            }
+        }
+        return null;
     }
 
     @PostMapping("/employee")
@@ -93,12 +98,21 @@ public class UserController {
     private Customer convertCustomerDTOToCustomer(CustomerDTO customerDTO){
         Customer customer = new Customer();
         BeanUtils.copyProperties(customerDTO, customer);
+
         return customer;
     }
 
     private CustomerDTO convertCustomerToCustomerDTO(Customer customer){
         CustomerDTO customerDTO = new CustomerDTO();
         BeanUtils.copyProperties(customer, customerDTO);
+        List<Pet> pets = customer.getPets();
+        if(pets != null) {
+            List<Long> petIds = new ArrayList<>();
+            for (Pet pet : pets) {
+                petIds.add(pet.getId());
+            }
+            customerDTO.setPetIds(petIds);
+        }
         return customerDTO;
     }
 

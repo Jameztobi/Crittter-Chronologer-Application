@@ -142,13 +142,13 @@ public class Employee {
 
     public void addEmployeeSchedule(Schedule schedule){
         this.schedule_employees.add(schedule);
-        schedule.getEmployeeIds().add(this);
+        schedule.getEmployees().add(this);
 
     }
 
     public void removeEmployeeSchedule(Schedule schedule){
         this.schedule_employees.remove(schedule);
-        schedule.getEmployeeIds().remove(this);
+        schedule.getEmployees().remove(this);
 
     }
 

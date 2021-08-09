@@ -28,10 +28,12 @@ public class CustomerService {
         return customerRepository.findAllCustomer();
     }
 
-//    public Customer getCustomerByPet(Long id){
-//        return customerRepository.findBypetIds(id);
-//
-//
-//    }
+    public Customer getCustomerById(Long customerId){
+        Optional<Customer> customer=customerRepository.findById(customerId);
+        if(customer.isPresent()){
+            return customer.get();
+        }
+        return null;
+    }
 
 }
